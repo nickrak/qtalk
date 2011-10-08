@@ -120,4 +120,35 @@ private:
     QString statusTextAt(const QModelIndex &index) const;
 };
 
+class TreeItem
+{
+public:
+    TreeItem(RosterModel::ItemType type, QString data, TreeItem *parent = 0);
+    ~TreeItem();
+    TreeItem* child(int row);
+    void appendChild(TreeItem *child);
+    bool removeOne(TreeItem *child);
+    int childCount(bool hideOffline = false) const;
+    QString data() const;
+    TreeItem* parent();
+    int childNumber() const;
+    RosterModel::ItemType type() const { return m_type; }
+    QList<TreeItem *> childItems() const { return m_childItems; }
+    void sortChildren();
+    void setUnread(bool unread = true);
+    bool isUnread() const;
+    bool hasChildContain(const QString &data) const;
+    int childIndexOfData(const QString &data) const;
+    void clear();
+
+private:
+    RosterModel::ItemType m_type;
+    QString m_data;
+    QList<TreeItem*> m_childItems;
+    TreeItem *m_parent;
+    bool m_unread;
+
+    QList<TreeItem *> onlineChildItems() const; // only use for group
+};
+
 #endif
