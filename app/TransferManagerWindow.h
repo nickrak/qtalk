@@ -28,10 +28,9 @@
 #define TRANSFERMANAGERWINDOW_H
 
 #include <QMainWindow>
-#include <QXmppTransferManager.h>
-
-class TransferManagerModel;
-class QFile;
+#include <QFile>
+#include "QXmppTransferManager.h"
+#include "TransferManagerModel.h"
 
 namespace Ui {
     class TransferManagerWindow;

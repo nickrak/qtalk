@@ -28,16 +28,15 @@
 #define PREFERENCESDIALOG_H
 
 #include <QDialog>
-#include <Preferences.h>
+#include "Preferences.h"
+#include "PrefAccount.h"
+#include "PrefChatWindow.h"
+#include "PrefGeneral.h"
+#include "PrefWidget.h"
 
 namespace Ui {
     class PreferencesDialog;
 }
-
-class PrefWidget;
-class PrefAccount;
-class PrefGeneral;
-class PrefChatWindow;
 
 class PreferencesDialog : public QDialog {
     Q_OBJECT

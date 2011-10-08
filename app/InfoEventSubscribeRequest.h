@@ -28,12 +28,12 @@
 #define INFOEVENTSUBSCRIBEREQUEST_H
 
 #include <QWidget>
+#include "QXmppClient.h"
 
 namespace Ui {
     class InfoEventSubscribeRequest;
 }
 
-class QXmppClient;
 
 class InfoEventSubscribeRequest : public QWidget {
     Q_OBJECT

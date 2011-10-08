@@ -32,16 +32,13 @@
 #include "QXmppMessage.h"
 #include "Preferences.h"
 #include "QXmppVCard.h"
+#include "QXmppClient.h"
 #include <QPointer>
-
-class QXmppClient;
-class QXmppMessage;
-class QTimer;
-class QStatusBar;
-class QPushButton;
-class MessageEdit;
-class QXmppVCard;
-class ContactInfoDialog;
+#include <QTimer>
+#include <QStatusBar>
+#include <QPushButton>
+#include "MessageEdit.h"
+#include "ContactInfoDialog.h"
 
 class ChatWindow : public QMainWindow
 {

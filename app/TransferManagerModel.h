@@ -28,7 +28,7 @@
 #define TRANSFERMANAGERMODEL_H
 
 #include <QAbstractTableModel>
-#include <QXmppTransferManager.h>
+#include "QXmppTransferManager.h"
 
 class TransferManagerModel : public QAbstractTableModel
 {

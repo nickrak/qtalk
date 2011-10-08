@@ -36,24 +36,22 @@
 #include <Preferences.h>
 #include <QXmppVCard.h>
 #include <QTranslator>
-
-class AddContactDialog;
-class ChatWindow;
-class CloseNoticeDialog;
-class ContactInfoDialog;
-class InfoEventStackWidget;
-class LoginWidget;
-class PreferencesDialog;
-class QListView;
-class QModelIndex;
-class QTreeView;
-class QXmppMessage;
-class QXmppTransferJob;
-class RosterModel;
-class RosterTreeView;
-class TransferManagerWindow;
-class UnreadMessageModel;
-class UnreadMessageWindow;
+#include "AddContactDialog.h"
+#include "ChatWindow.h"
+#include "CloseNoticeDialog.h"
+#include "ContactInfoDialog.h"
+#include "InfoEventStackWidget.h"
+#include "LoginWidget.h"
+#include "PreferencesDialog.h"
+#include <QListView>
+#include <QModelIndex>
+#include <QTreeView>
+#include "QXmppMessage.h"
+#include "QXmppTransferManager.h"
+#include "RosterModel.h"
+#include "TransferManagerWindow.h"
+#include "UnreadMessageModel.h"
+#include "UnreadMessageWindow.h"
 
 class MainWindow : public QMainWindow
 {

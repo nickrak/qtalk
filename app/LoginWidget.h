@@ -28,7 +28,7 @@
 #define LOGINWINDOW_H
 
 #include <QWidget>
-#include <Preferences.h>
+#include "Preferences.h"
 
 namespace Ui {
     class LoginWidget;

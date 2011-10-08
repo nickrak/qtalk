@@ -26,7 +26,7 @@
 
 #include "UnreadMessageWindow.h"
 #include "QXmppMessage.h"
-#include <UnreadMessageModel.h>
+#include "UnreadMessageModel.h"
 
 UnreadMessageWindow::UnreadMessageWindow(QWidget *parent)
     : QMainWindow(parent)

@@ -28,7 +28,7 @@
 #define PREFWIDGET_H
 
 #include <QWidget>
-#include <Preferences.h>
+#include "Preferences.h"
 #include <QIcon>
 
 class PrefWidget : public QWidget

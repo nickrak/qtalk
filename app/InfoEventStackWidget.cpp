@@ -26,8 +26,8 @@
 
 #include "InfoEventStackWidget.h"
 #include "ui_InfoEventStackWidget.h"
-#include <QXmppClient.h>
-#include <InfoEventSubscribeRequest.h>
+#include "QXmppClient.h"
+#include "InfoEventSubscribeRequest.h"
 #include <QTimeLine>
 
 InfoEventStackWidget::InfoEventStackWidget(QXmppClient *client, QWidget *parent) :

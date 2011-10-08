@@ -28,7 +28,7 @@
 #define PREFCHATWINDOW_H
 
 #include <QWidget>
-#include <PrefWidget.h>
+#include "PrefWidget.h"
 
 namespace Ui {
     class PrefChatWindow;

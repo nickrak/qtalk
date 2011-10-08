@@ -26,7 +26,7 @@
 
 #include "AddContactDialog.h"
 #include "ui_AddContactDialog.h"
-#include "QPushButton"
+#include <QPushButton>
 
 AddContactDialog::AddContactDialog(QWidget *parent) :
     QDialog(parent),

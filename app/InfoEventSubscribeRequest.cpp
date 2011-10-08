@@ -26,8 +26,8 @@
 
 #include "InfoEventSubscribeRequest.h"
 #include "ui_InfoEventSubscribeRequest.h"
-#include <QXmppClient.h>
-#include <QXmppPresence.h>
+#include "QXmppClient.h"
+#include "QXmppPresence.h"
 
 InfoEventSubscribeRequest::InfoEventSubscribeRequest(QString bareJid, QXmppClient *client, QWidget *parent) :
     QWidget(parent),

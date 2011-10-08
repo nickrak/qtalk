@@ -28,8 +28,8 @@
 #define PREFACCOUNT_H
 
 #include <QWidget>
-#include <PrefWidget.h>
-#include <Preferences.h>
+#include "PrefWidget.h"
+#include "Preferences.h"
 
 namespace Ui {
     class PrefAccount;

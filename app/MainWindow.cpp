@@ -39,20 +39,20 @@
 #include "PreferencesDialog.h"
 #include "CloseNoticeDialog.h"
 #include "RosterModel.h"
-#include <QXmppVCardManager.h>
+#include "QXmppVCardManager.h"
 #include "TransferManagerWindow.h"
 #include <QMessageBox>
 #include <QDialog>
 #include <QListWidget>
 #include <QDialogButtonBox>
-#include <ContactInfoDialog.h>
+#include "ContactInfoDialog.h"
 #include <QDesktopWidget>
-#include <QXmppRosterIq.h>
+#include "QXmppRosterIq.h"
 #include "AddContactDialog.h"
 #include "InfoEventStackWidget.h"
 #include <QInputDialog>
 #include <QTranslator>
-#include <QXmppLogger.h>
+#include "QXmppLogger.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),

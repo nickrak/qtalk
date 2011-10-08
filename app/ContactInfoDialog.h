@@ -28,7 +28,7 @@
 #define CONTACTINFODIALOG_H
 
 #include <QDialog>
-#include <QXmppVCard.h>
+#include "QXmppVCard.h"
 
 namespace Ui {
     class ContactInfoDialog;

@@ -28,7 +28,7 @@
 #define ADDCONTACTDIALOG_H
 
 #include <QDialog>
-#include <QXmppRosterIq.h>
+#include "QXmppRosterIq.h"
 #include <QSet>
 
 namespace Ui {

@@ -29,13 +29,13 @@
 
 #include <QAbstractItemModel>
 #include "Preferences.h"
+#include "QXmppClient.h"
+#include "QXmppRoster.h"
+#include "QXmppPresence.h"
+#include "QXmppVCard.h"
+#include "QXmppVCardManager.h"
 
-class TreeItem;
-class QXmppClient;
-class QXmppRoster;
-class QXmppPresence;
-class QXmppVCardManager;
-class QXmppVCard;
+class TreeItem; // Declared Below, required due to circular referencing
 
 class RosterModel : public QAbstractItemModel
 {

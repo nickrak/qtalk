@@ -28,13 +28,12 @@
 #define InfoEventStackWidget_H
 
 #include <QWidget>
+#include "QXmppClient.h"
+#include <QTimeLine>
 
 namespace Ui {
     class InfoEventStackWidget;
 }
-
-class QXmppClient;
-class QTimeLine;
 
 class InfoEventStackWidget : public QWidget {
     Q_OBJECT
