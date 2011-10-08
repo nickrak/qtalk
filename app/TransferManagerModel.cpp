@@ -43,28 +43,24 @@ int TransferManagerModel::columnCount(const QModelIndex &/* parent */) const
 
 QVariant TransferManagerModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
-    if (role == Qt::DisplayRole) {
-        if (orientation == Qt::Horizontal) {
-            switch (section) {
-            case Direction:
-                return QString(tr("Direction"));
-            case Jid:
-                return QString(tr("Jabber ID"));
-            case FileName:
-                return QString(tr("File Name"));
-            case State:
-                return QString(tr("State"));
-            case Method:
-                return QString(tr("Method"));
-            case FileSize:
-                return QString(tr("File Size"));
-            case Progress:
-                return QString(tr("Process"));
-            default:
-                break;
-            }
-        } else {
-            return  QVariant();
+    if (role == Qt::DisplayRole && orientation == Qt::Horizontal) {
+        switch (section) {
+        case Direction:
+            return QString(tr("Direction"));
+        case Jid:
+            return QString(tr("Jabber ID"));
+        case FileName:
+            return QString(tr("File Name"));
+        case State:
+            return QString(tr("State"));
+        case Method:
+            return QString(tr("Method"));
+        case FileSize:
+            return QString(tr("File Size"));
+        case Progress:
+            return QString(tr("Process"));
+        default:
+            break;
         }
     }
     return QVariant();

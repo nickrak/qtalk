@@ -342,20 +342,18 @@ QVariant RosterModel::data(const QModelIndex &index, int role) const
     TreeItem *item = getItem(index);
     ItemType type = item->type();
 
-    if (role == Qt::DisplayRole) {
+    switch (role)
+    {
+    case Qt::DisplayRole:
         return displayData(index);
-    }
-
-    if (role == Qt::ToolTipRole) {
+    case Qt::ToolTipRole:
         return toolTipData(index);
-
-    }
-
-    if (role == Qt::DecorationRole) {
+    case Qt::DecorationRole:
         if (type == group) {
             QImage image(":/images/folder.png");
             return QIcon(QPixmap::fromImage(image.scaled(QSize(24, 24))));
-        } else if (type == contact) {
+        }
+        if (type == contact) {
             if (item->isUnread()) {
                 return QIcon(":/images/mail-unread-new.png");
             }
@@ -363,17 +361,14 @@ QVariant RosterModel::data(const QModelIndex &index, int role) const
                 && !m_vCards[jidAt(index)].photoAsImage().isNull()) {
                 QImage image = m_vCards[jidAt(index)].photoAsImage().scaled(QSize(64, 64));
                 return QIcon(QPixmap::fromImage(image));
-            } else {
-                if (item->childCount() == 0)
-                    return QIcon(":/images/user-identity-grey.png");
-                else
-                    return QIcon(":/images/user-identity.png");
             }
-        } else {
-            return QVariant();
+            if (item->childCount() == 0)
+            {
+                return QIcon(":/images/user-identity-grey.png");
+            }
+            return QIcon(":/images/user-identity.png");
         }
     }
-
     return QVariant();
 }
 
@@ -403,9 +398,7 @@ int RosterModel::rowCount(const QModelIndex &parent) const
     if (parent.isValid() && parent.column() != 0)
         return 0;
 
-    TreeItem *parentItem = getItem(parent);
-
-    return parentItem->childCount();
+    return getItem(parent)->childCount();
 }
 
 int RosterModel::columnCount(const QModelIndex & /* parent */) const
@@ -587,39 +580,45 @@ TreeItem* RosterModel::getItem(const QModelIndex &index) const
 QString RosterModel::displayData(const QModelIndex &index) const
 {
     TreeItem *item = getItem(index);
-    if (item->type() == RosterModel::group) {
-        return QString("%1 [ %2 / %3 ]").arg(item->data()).arg(item->childCount(true)).arg(item->childCount());
-    } else if (item->type() == RosterModel::contact) {
-        QXmppVCard vcard = getVCard(item->data());
-        QString name;
-        QString rosterName = m_roster->getRosterEntry(item->data()).name();
-        QString nickName = vcard.nickName();
-        QString fullName = vcard.fullName();
-        if (!rosterName.isEmpty())
-            name = rosterName;
-        else if (!nickName.isEmpty())
-            name = nickName;
-        else if (!fullName.isEmpty())
-            name = fullName;
-        else
-            name = item->data();
+    switch (item->type())
+    {
+        case RosterModel::group:
+            return QString("%1 [ %2 / %3 ]").arg(item->data()).arg(item->childCount(true)).arg(item->childCount());
+        case RosterModel::contact:
+            {
+            QXmppVCard vcard = getVCard(item->data());
+            QString name;
+            QString rosterName = m_roster->getRosterEntry(item->data()).name();
+            QString nickName = vcard.nickName();
+            QString fullName = vcard.fullName();
+            if (!rosterName.isEmpty())
+                name = rosterName;
+            else if (!nickName.isEmpty())
+                name = nickName;
+            else if (!fullName.isEmpty())
+                name = fullName;
+            else
+                name = item->data();
 
-        QString statusText = statusTextAt(index);
-        if (statusText.isEmpty())
-            return name;
-        else
-            return QString("%1 \n%2").arg(name).arg(statusTextAt(index));
-    } else if (item->type() == RosterModel::resource) {
-        QString str = item->data();
-        if (item->isUnread())
-            str = "[*]" + str;
-        QString statusText = statusTextAt(index);
-        if (statusText.isEmpty())
-            return str;
-        else
-            return QString("%1 \n%2").arg(str).arg(statusText);
-    } else {
-        return QString();
+            QString statusText = statusTextAt(index);
+            if (statusText.isEmpty())
+                return name;
+            else
+                return QString("%1 \n%2").arg(name).arg(statusTextAt(index));
+            }
+        case RosterModel::resource:
+            {
+            QString str = item->data();
+            if (item->isUnread())
+                str = "[*]" + str;
+            QString statusText = statusTextAt(index);
+            if (statusText.isEmpty())
+                return str;
+            else
+                return QString("%1 \n%2").arg(str).arg(statusText);
+            }
+        default:
+            return QString();
     }
 }
 
@@ -694,19 +693,17 @@ QString RosterModel::statusTextAt(const QModelIndex &index) const
             return QString();
         else
             return QString("%1 %2").arg(presence.getStatus().getTypeStr()).arg(presence.getStatus().getStatusText());
-    } else {
-        if (item->childCount() == 0) {
-            return QString(tr("Offline"));
-        } else if (item->childCount() == 1) {
-            QXmppPresence presence = m_roster->getPresence(item->data(), item->child(0)->data());
-            if (presence.getStatus().getTypeStr().isEmpty())
-                return QString();
-            else
-                return QString("%1 %2").arg(presence.getStatus().getTypeStr()).arg(presence.getStatus().getStatusText());
-        } else {
-            return QString(tr("Multi Status"));
-        }
     }
+    if (item->childCount() == 0) {
+        return QString(tr("Offline"));
+    }
+    if (item->childCount() == 1) {
+        QXmppPresence presence = m_roster->getPresence(item->data(), item->child(0)->data());
+        if (presence.getStatus().getTypeStr().isEmpty())
+            return QString();
+        return QString("%1 %2").arg(presence.getStatus().getTypeStr()).arg(presence.getStatus().getStatusText());
+    }
+    return QString(tr("Multi Status"));
 }
 
 void RosterModel::sortContact(const QModelIndex &groupIndex)
@@ -804,25 +801,11 @@ bool RosterModel::isIndexHidden(const QModelIndex &index)
     case root:
         return false;
     case group:
-        if (item->childCount(m_hideOffline) == 0)
-            return true;
-        else
-            return false;
+        return item->childCount(m_hideOffline) == 0;
     case contact:
-        if (m_hideOffline && item->childCount() == 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return m_hideOffline && item->childCount() == 0;
     case resource:
-        if (!m_showResources) {
-            return true;
-        } else if (!m_showSingleResource
-                   && item->parent()->childCount() < 2) {
-            return true;
-        } else {
-            return false;
-        }
+        return !m_showResources || (!m_showSingleResource && item->parent()->childCount() < 2);
     }
     return false;
 }
@@ -836,8 +819,7 @@ QXmppVCard RosterModel::getVCard(const QString &bareJid) const
 {
     if (hasVCard(bareJid))
         return m_vCards[bareJid];
-    else
-        return QXmppVCard();
+    return QXmppVCard();
 }
 
 void RosterModel::clear()

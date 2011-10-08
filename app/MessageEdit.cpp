@@ -42,10 +42,8 @@ bool MessageEdit::event(QEvent *event)
 {
     if (event->type() == QEvent::ShortcutOverride) {
         QKeyEvent *keyEvent = dynamic_cast<QKeyEvent *>(event);
-        if (keyEvent->key() == Qt::Key_Return) {
-            if (m_ignoreEnter && !(keyEvent->modifiers() & Qt::ShiftModifier)) {
-                return false;
-            }
+        if (keyEvent->key() == Qt::Key_Return && (m_ignoreEnter && !(keyEvent->modifiers() & Qt::ShiftModifier))) {
+            return false;
         }
     }
     return QTextEdit::event(event);
