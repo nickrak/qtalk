@@ -71,8 +71,5 @@ void PrefChatWindow::readData(Preferences *pref)
 
 void PrefChatWindow::writeData(Preferences *pref)
 {
-    if (ui->enterRadioButton->isChecked())
-        pref->enterToSendMessage = true;
-    else
-        pref->enterToSendMessage = false;
+    pref->enterToSendMessage = ui->enterRadioButton->isChecked();
 }

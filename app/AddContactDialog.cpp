@@ -80,10 +80,7 @@ QString AddContactDialog::group() const
 
 void AddContactDialog::enableOkButton(const QString &str)
 {
-    if (str.isEmpty())
-        ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
-    else
-        ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(true);
+    ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(!str.isEmpty());
 }
 
 void AddContactDialog::enableGroupLineEdit(int index)

@@ -538,10 +538,7 @@ void MainWindow::actionCopyToGroup()
 
 void MainWindow::showEventStack()
 {
-    if (m_infoEventStackWidget->isVisible())
-        m_infoEventStackWidget->setAnimeVisible(false);
-    else
-        m_infoEventStackWidget->setAnimeVisible(true);
+    m_infoEventStackWidget->setAnimeVisible(!m_infoEventStackWidget->isVisible());
 }
 
 void MainWindow::openContactInfoDialog(QString jid)

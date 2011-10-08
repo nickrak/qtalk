@@ -72,13 +72,7 @@ QVariant TransferManagerModel::headerData(int section, Qt::Orientation orientati
 
 QVariant TransferManagerModel::data(const QModelIndex &index, int role) const
 {
-    if (!index.isValid())
-        return QVariant();
-
-    if (m_jobList.count() == 0)
-        return QVariant();
-
-    if (role == Qt::DisplayRole) {
+    if (index.isValid() && m_jobList.count() != 0 && role == Qt::DisplayRole) {
         QXmppTransferJob *job = m_jobList[index.row()];
         switch (index.column()) {
         case Direction:
